@@ -14,6 +14,10 @@ app.use(bodyParser.json());
 app.use('/api/auth', authRoutes);  // Prefix auth routes with /api/auth
 app.use('/api/users', userRoutes);  // Prefix user routes with /api/users
 
+app.get('/',(req,res)=>{
+    res.send('Welcome to the Backend!');
+});
+
 // Start server
 app.listen(5000, () => {
     console.log('Server is running on port 5000');
