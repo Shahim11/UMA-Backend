@@ -10,7 +10,7 @@ const app = express();
 // app.use(cors());
 // Allow requests from specific frontend domain
 app.use(cors({
-    origin: ['', 'https://rad-pithivier-11ed02.netlify.app'],  // Allow requests from this frontend
+    origin: ['https://rad-pithivier-11ed02.netlify.app'],  // Allow requests from this frontend
     methods: ['GET', 'POST'],  // Include the methods you allow
     credentials: true  // If you’re using cookies or auth tokens
 }));
