@@ -8,20 +8,18 @@ const userRoutes = require('./routes/userRoutes');  // Import user routes
 const app = express();
 
 app.use(cors());
-app.use(cors({
-    origin: 'https://rad-pithivier-11ed02.netlify.app', // Specify the origin
-    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify allowed methods
-    credentials: true // Enable this if you're using cookies or other credentials
-}));
-
-app.options('*', cors());
 app.use(bodyParser.json());
 
-// Use the routes
-app.use('/api/auth', authRoutes);  // Prefix auth routes with /api/auth
-app.use('/api/users', userRoutes);  // Prefix user routes with /api/users
+// Group all routes under /api
+const apiRouter = express.Router();  // Create a router for all /api routes
 
-app.get('/',(req,res)=>{
+// Use the routes with the global /api prefix
+apiRouter.use('/auth', authRoutes);  // /api/auth
+apiRouter.use('/users', userRoutes);  // /api/users
+
+app.use('/api', apiRouter);  // All routes under /api prefix
+
+app.get('/', (req, res) => {
     res.send('Welcome to the Backend!');
 });
 
@@ -29,4 +27,3 @@ app.get('/',(req,res)=>{
 app.listen(5000, () => {
     console.log('Server is running on port 5000');
 });
-
