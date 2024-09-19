@@ -8,13 +8,13 @@ const userRoutes = require('./routes/userRoutes');  // Import user routes
 const app = express();
 
 app.use(cors());
-// Allow requests from specific frontend domain
-// app.use(cors({
-//     origin: ['https://rad-pithivier-11ed02.netlify.app'],  // Allow requests from this frontend
-//     methods: ['GET', 'POST'],  // Include the methods you allow
-//     credentials: true  // If you’re using cookies or auth tokens
-// }));
+app.use(cors({
+    origin: 'https://rad-pithivier-11ed02.netlify.app', // Specify the origin
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify allowed methods
+    credentials: true // Enable this if you're using cookies or other credentials
+}));
 
+app.options('*', cors());
 app.use(bodyParser.json());
 
 // Use the routes
