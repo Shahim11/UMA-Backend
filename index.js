@@ -7,7 +7,15 @@ const userRoutes = require('./routes/userRoutes');  // Import user routes
 
 const app = express();
 
-app.use(cors());
+// app.use(cors());
+const corsOptions = {
+    origin: ['https://uma-frontend.vercel.app', 'http://localhost:3000'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    credentials: true
+};
+app.use(cors(corsOptions));
+
+
 app.use(bodyParser.json());
 
 // Group all routes under /api
