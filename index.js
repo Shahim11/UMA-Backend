@@ -8,12 +8,50 @@ const userRoutes = require('./routes/userRoutes');  // Import user routes
 const app = express();
 
 // app.use(cors());
-const corsOptions = {
-    origin: ['https://uma-frontend.vercel.app', 'http://localhost:3000'],
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    credentials: true
-};
-app.use(cors(corsOptions));
+// const corsOptions = {
+//     origin: ['https://uma-frontend.vercel.app', 'http://localhost:3000'],
+//     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+//     credentials: true
+// };
+// app.use(cors(corsOptions));
+
+
+// Set middleware of CORS 
+app.use((req, res, next) => {
+  res.setHeader(
+    "Access-Control-Allow-Origin",
+    "https://uma-frontend.onrender.com"
+  );
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS,CONNECT,TRACE"
+  );
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "Content-Type, Authorization, X-Content-Type-Options, Accept, X-Requested-With, Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+  );
+  res.setHeader("Access-Control-Allow-Credentials", true);
+  res.setHeader("Access-Control-Allow-Private-Network", true);
+  //  Firefox caps this at 24 hours (86400 seconds). Chromium (starting in v76) caps at 2 hours (7200 seconds). The default value is 5 seconds.
+  res.setHeader("Access-Control-Max-Age", 7200);
+
+  next();
+});
+
+// Set preflight
+app.options("*", (req, res) => {
+    console.log("preflight");
+    if (
+      req.headers.origin === "https://uma-frontend.onrender.com" &&
+      allowMethods.includes(req.headers["access-control-request-method"]) &&
+      allowHeaders.includes(req.headers["access-control-request-headers"])
+    ) {
+      console.log("pass");
+      return res.status(204).send();
+    } else {
+      console.log("fail");
+    }
+});
 
 
 app.use(bodyParser.json());
