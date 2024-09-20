@@ -5,6 +5,6 @@ exports.unblockUsers = (req, res) => {
     const sql = "UPDATE users SET status = 'active' WHERE id IN (?)";
     connection.query(sql, [ids], (err) => {
         if (err) return res.status(500).json({ message: 'Error unblocking users'});
-        res.json({ message: 'Users unblocked'});
+        res.json({ message: 'Users unblocked!'});
     });
 };

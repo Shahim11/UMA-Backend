@@ -13,10 +13,10 @@ exports.register = async (req, res) => {
         if (err) {
             if (err.code === 'ER_DUP_ENTRY') {
                 // Handle unique constraint violation (duplicate email)
-                return res.status(400).json({ message: 'Email already registered'});
+                return res.status(400).json({ message: 'Email already registered. Please use another email.'});
             }
             return res.status(500).json({ message: 'Error registering user'});
         }
-        res.status(201).json({ message: 'User Registered!'});
+        res.status(201).json({ message: 'Registration Successful! Please log in.'});
     });
 };

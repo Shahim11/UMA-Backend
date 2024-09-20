@@ -10,10 +10,10 @@ exports.deleteUsers = (req, res) => {
         if (err) return res.status(500).json({ message: 'Error deleting users'});
         // Check if the current user is among the deleted users
         if (ids.includes(currentUserId)) {
-            return res.status(200).json({ message: 'Users deleted', currentUserDeleted: true });
+            return res.status(200).json({ message: 'Users deleted!', currentUserDeleted: true });
         }
 
-        res.status(200).json({ message: 'Users deleted', currentUserDeleted: false });
+        res.status(200).json({ message: 'Users deleted!', currentUserDeleted: false });
     });
 };
 

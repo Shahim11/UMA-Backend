@@ -10,9 +10,9 @@ exports.blockUsers = (req, res) => {
 
         // Check if the current user is in the blocked list
         if (ids.includes(currentUserId)) {
-            return res.status(200).json({ message: 'Users blocked', currentUserBlocked: true });
+            return res.status(200).json({ message: 'Users blocked!', currentUserBlocked: true });
         }
 
-        res.status(200).json({ message: 'Users blocked', currentUserBlocked: false });
+        res.status(200).json({ message: 'Users blocked!', currentUserBlocked: false });
     });
 };
