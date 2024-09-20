@@ -6,7 +6,7 @@ exports.blockUsers = (req, res) => {
 
     const sql = "UPDATE users SET status = 'blocked' WHERE id IN (?)";
     connection.query(sql, [ids], (err) => {
-        if (err) return res.status(500).send('Error blocking users');
+        if (err) return res.status(500).json({ message: 'Error blocking users'});
 
         // Check if the current user is in the blocked list
         if (ids.includes(currentUserId)) {

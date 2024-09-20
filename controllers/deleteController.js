@@ -7,8 +7,7 @@ exports.deleteUsers = (req, res) => {
 
     const sql = 'DELETE FROM users WHERE id IN (?)';
     connection.query(sql, [ids], (err) => {
-        if (err) return res.status(500).send('Error deleting users');
-
+        if (err) return res.status(500).json({ message: 'Error deleting users'});
         // Check if the current user is among the deleted users
         if (ids.includes(currentUserId)) {
             return res.status(200).json({ message: 'Users deleted', currentUserDeleted: true });
