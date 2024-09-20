@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const port = process.env.PORT || 5000;
 
 const authRoutes = require('./routes/authRoutes');  // Import auth routes
 const userRoutes = require('./routes/userRoutes');  // Import user routes
@@ -58,6 +59,7 @@ app.get('/', (req, res) => {
 // app.listen(5000, () => {
 //     console.log('Server is running on port 5000');
 // });
-app.listen(process.env.PORT, () => {
+
+app.listen(port, () => {
     console.log(`Server is running on port ${process.env.PORT}`);
-  });
+});
