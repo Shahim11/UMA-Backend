@@ -17,6 +17,6 @@ exports.register = async (req, res) => {
             }
             return res.status(500).send('Error registering user');
         }
-        res.status(201).send('User registered');
+        res.status(201).send('User Registered!');
     });
 };
